@@ -35,3 +35,9 @@ variable "vpc_tags" {
   type = map(string)
   default = {}
 }
+
+variable "zones" {
+  description = "Specify the region where the cluster creates"
+  type = string
+  default = "me-central-1a"
+}

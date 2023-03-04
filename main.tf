@@ -2,7 +2,7 @@
 #   required_providers {
 #     alicloud = {
 #       source = "aliyun/alicloud"
-#       version = "1.199.0"
+#       version = "1.200.0"
 #     }
 #   }
 # }
@@ -33,7 +33,7 @@ module "vswitches" {
   vswitch_name = "myvswitch"
   vpc_id = module.vpc.vpc_id
   cidr_block = ["172.160.1.0/24", "172.160.2.0/24"]
-  zone_id = ["${var.region}", "${var.region}"]
+  zone_id = ["${var.zones}", "${var.zones}"]
 
   vswitch_tags = {
 

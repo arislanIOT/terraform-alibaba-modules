@@ -42,3 +42,11 @@ module "vswitches" {
   }
 
 }
+
+module "nat" {
+
+  source = "./module/nat"
+  vpc_id = module.vpc.vpc_id
+
+  
+}

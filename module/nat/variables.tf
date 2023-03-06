@@ -6,7 +6,7 @@ variable "vpc_id" {
 
 variable "vswitch_id" {
   description = "The vpc id used to launch several vswitches. If set, the 'create' will be ignored."
-  type        = list(string)
+  type        = any
   default     = []
 }
 
@@ -25,8 +25,8 @@ variable "nat_gateway_name" {
 }
 variable "source_vswitch_id" {
   description = "The vpc id used to launch several vswitches. If set, the 'create' will be ignored."
-  type        = string
-  default     = ""
+  type        = any
+  default     = []
 }
 
 variable "cidr_block" {
@@ -34,3 +34,4 @@ variable "cidr_block" {
     type        = list(string)
     default     = []
 }
+

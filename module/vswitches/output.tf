@@ -1,6 +1,7 @@
 output "vswitch_id" {
   description = "The ID of the VPC"
-  value       = [alicloud_vswitch.vsw.*.id]
+  value       = ("${alicloud_vswitch.vsw.*.id}")
+
 }
 # output "instance_ids" {
 #   value = ["${aws_instance.kafka.*.id}"]

@@ -44,14 +44,12 @@ module "vswitches" {
 }
 
 module "nat" {
-
   source = "./module/nat"
   vpc_id = module.vpc.vpc_id
-  vswitch_id = module.vswitches.vswitch_id[0]
+  vswitch_id = module.vswitches.vswitch_id
+  source_vswitch_id = module.vswitches.vswitch_id
   depends_on       = [
     module.vpc.vpc,
-    module.vswitches.vsw,
+    module.vswitches.vswitch_id,
     ]
-
-  
 }

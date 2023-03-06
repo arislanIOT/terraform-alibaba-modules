@@ -47,6 +47,11 @@ module "nat" {
 
   source = "./module/nat"
   vpc_id = module.vpc.vpc_id
+  vswitch_id = module.vswitches.vswitch_id[0]
+  depends_on       = [
+    module.vpc.vpc,
+    module.vswitches.vsw,
+    ]
 
   
 }

@@ -7,7 +7,7 @@
 #   nat_type         = "Enhanced"
 #   vswitch_id       = alicloud_vswitch.foo1.id
 # }
-### Above one is proper way of nat resource
+### Above one is proper way of nat
 
 resource "alicloud_nat_gateway" "default" {
   # count = length(var.source_vswitch_id)
@@ -15,7 +15,7 @@ resource "alicloud_nat_gateway" "default" {
   vpc_id = var.vpc_id
   name   = var.nat_gateway_name
   nat_type         = "Enhanced"
-  vswitch_id       = "vsw-l4v9kbg9o4kvprt1x64hw"
+  vswitch_id       = var.vswitch_id[count.index]
 }
 
 resource "alicloud_eip" "default" {
@@ -36,5 +36,5 @@ resource "alicloud_snat_entry" "default" {
   count         = var.new_nat_gateway == true ? 1 : 0
   snat_table_id     = alicloud_nat_gateway.default[0].snat_table_ids
   snat_ip           = alicloud_eip.default[0].ip_address
-
+  source_vswitch_id = var.vswitch_id[count.index]
 }

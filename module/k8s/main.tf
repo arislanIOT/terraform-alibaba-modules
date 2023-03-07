@@ -13,7 +13,7 @@ resource "alicloud_vswitch" "vswitch_for_pod" {
 
 
 resource "alicloud_cs_managed_kubernetes" "k8s" {
-  count = length(var.cidr_for_pod) 
+  
   new_nat_gateway = true
   is_enterprise_security_group = true
   slb_internet_enabled = true

@@ -7,24 +7,28 @@ output "vswitch_id" {
 #     ]
 }
 
-output "nat_vswitch_id" {
-    description = "my nat vswitc id's"
-    value = module.nat.nat_vswitch_id
+output "worker_vswitch_ids" {
+    value = module.k8s.worker_vswitch_ids
+}
+
+# output "nat_vswitch_id" {
+#     description = "my nat vswitc id's"
+#     value = module.nat.nat_vswitch_id
   
-}
+# }
 
-output "snat_ip" {
-    description = "snat_IP"
-    value = module.nat.snat_ip
+# output "snat_ip" {
+#     description = "snat_IP"
+#     value = module.nat.snat_ip
   
-}
+# }
 
-output "nat_gateway_id" {
-    description = "to get id's of nat"
-    value = module.nat.nat_gateway_id
-}
+# output "nat_gateway_id" {
+#     description = "to get id's of nat"
+#     value = module.nat.nat_gateway_id
+# }
 
-output "snat_table_id" {
-    description = "to get id's of nat"
-    value = module.nat.snat_table_id
-}
+# output "snat_table_id" {
+#     description = "to get id's of nat"
+#     value = module.nat.snat_table_id
+# }

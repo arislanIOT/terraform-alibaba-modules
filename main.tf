@@ -43,13 +43,25 @@ module "vswitches" {
 
 }
 
-module "nat" {
-  source = "./module/nat"
+# module "nat" {
+#   source = "./module/nat"
+#   vpc_id = module.vpc.vpc_id
+#   vswitch_id = module.vswitches.vswitch_id
+#   source_vswitch_id = module.vswitches.vswitch_id
+#   depends_on       = [
+#     module.vpc.vpc,
+#     module.vswitches.vswitch_id,
+#     ]
+# }
+
+module "k8s" {
+  source = "./module/k8s"
   vpc_id = module.vpc.vpc_id
+  cluster_name = "k8Mcl"
+  cluster_spec = "ack.pro.small"
+  service_cidr = "192.168.0.0/16"
+  cidr_for_pod = ["172.160.10.0/24", "172.160.12.0/24"]
   vswitch_id = module.vswitches.vswitch_id
-  source_vswitch_id = module.vswitches.vswitch_id
-  depends_on       = [
-    module.vpc.vpc,
-    module.vswitches.vswitch_id,
-    ]
+  worker_vswitch_ids = module.vswitches.vswitch_id
+  
 }

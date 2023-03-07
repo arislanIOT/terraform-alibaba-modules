@@ -27,3 +27,4 @@ variable "vswitch_tags" {
   type = map(string)
   default = {}
 }
+

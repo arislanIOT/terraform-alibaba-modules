@@ -23,3 +23,8 @@ output "nat_gateway_id" {
     description = "to get id's of nat"
     value = module.nat.nat_gateway_id
 }
+
+output "snat_table_id" {
+    description = "to get id's of nat"
+    value = module.nat.snat_table_id
+}

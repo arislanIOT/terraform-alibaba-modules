@@ -38,6 +38,6 @@ variable "vpc_tags" {
 
 variable "zones" {
   description = "Specify the region where the cluster creates"
-  type = string
-  default = "me-central-1a"
+  type = list(string)
+  default = []
 }

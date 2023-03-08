@@ -11,6 +11,14 @@ output "worker_vswitch_ids" {
     value = module.k8s.worker_vswitch_ids
 }
 
+output "cluster_id" {
+    value = module.k8s.cluster_id
+  
+}
+
+output "node_zones" {
+  value = module.workers.availability_zone
+}
 # output "nat_vswitch_id" {
 #     description = "my nat vswitc id's"
 #     value = module.nat.nat_vswitch_id

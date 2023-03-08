@@ -65,3 +65,10 @@ module "k8s" {
   worker_vswitch_ids = module.vswitches.vswitch_id
   
 }
+
+module "workers" {
+  source = "./module/workers"
+  cluster_id = module.k8s.cluster_id
+  worker_vswitch_ids = module.vswitches.vswitch_id
+  
+}

@@ -1,13 +1,15 @@
 data "alicloud_zones" "myzone" {
+  # count = length(var.cidr_for_pod) 
   available_resource_creation = "VSwitch"
   
 }
 
 resource "alicloud_vswitch" "vswitch_for_pod" {
   count = length(var.cidr_for_pod)  
+  vswitch_name = "PodvSwtch"
   vpc_id     = var.vpc_id
   cidr_block = var.cidr_for_pod[count.index]
-  zone_id    = data.alicloud_zones.myzone.zones.0.id
+  zone_id    = data.alicloud_zones.myzone.zones[count.index].id
   
 }
 
@@ -16,7 +18,7 @@ resource "alicloud_cs_managed_kubernetes" "k8s" {
   
   new_nat_gateway = true
   is_enterprise_security_group = true
-  slb_internet_enabled = true
+  slb_internet_enabled = false
   name = var.cluster_name
   cluster_spec = var.cluster_spec
   version = "1.24.6-aliyun.1"

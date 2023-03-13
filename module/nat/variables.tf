@@ -34,4 +34,12 @@ variable "cidr_block" {
     type        = list(string)
     default     = []
 }
+<<<<<<< HEAD
+=======
+variable "nat_tags" {
+  description = "tag for grouping all"
+  type = map(string)
+  default = {}
+}
+>>>>>>> main
 

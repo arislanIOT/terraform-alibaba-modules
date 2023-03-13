@@ -52,6 +52,15 @@ resource "alicloud_nat_gateway" "default" {
   nat_type         = "Enhanced"
   # count = length(var.vswitch_id)
   vswitch_id = var.vswitch_id[0]
+<<<<<<< HEAD
+=======
+  tags = merge(
+    {
+      "Name" = format("%s", var.nat_gateway_name)
+    },
+    var.nat_tags,
+  )
+>>>>>>> main
 }
 
 resource "alicloud_eip" "default" {

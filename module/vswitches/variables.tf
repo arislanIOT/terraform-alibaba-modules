@@ -26,4 +26,9 @@ variable "vswitch_tags" {
   description = "tag for grouping all"
   type = map(string)
   default = {}
+<<<<<<< HEAD
 }
+=======
+}
+
+>>>>>>> main

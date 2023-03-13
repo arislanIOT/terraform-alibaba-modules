@@ -22,54 +22,28 @@ terraform {
 
 provider "alicloud" {
 
-<<<<<<< HEAD
-  region = "${var.region}"
-  profile = "${var.profile}"
-=======
   region  = var.region
   profile = var.profile
->>>>>>> main
 
 }
 
 module "vpc" {
-<<<<<<< HEAD
-    source = "./module/vpc"
-    vpc_name = "myvpc"
-    cidr_block = "172.160.0.0/12"
-    vpc_tags = {
-      
-      Owner       = "user"
-      Environment = "dev"
-      Name        = "complete"
-    }
-    
-=======
   source     = "./module/vpc"
-  vpc_name   = "myvpc"
+  vpc_name   = local.name_vpc
   cidr_block = "172.160.0.0/12"
-  vpc_tags = {
-
-    Owner       = "user"
-    Environment = "dev"
-    Name        = "complete"
-  }
+  tags = var.tags
 
 }
 
 module "vswitches" {
 
   source       = "./module/vswitches"
-  vswitch_name = "myvswitch"
+  vswitch_name = local.name_vswitch
   vpc_id       = module.vpc.vpc_id
   cidr_block   = ["172.160.1.0/24", "172.160.2.0/24"]
   zone_id      = ["me-central-1a", "me-central-1b"]
 
-  vswitch_tags = {
-
-    "Owner"       = "user",
-    "Environment" = "dev"
-  }
+  tags = var.tags
 
 }
 
@@ -87,17 +61,13 @@ module "vswitches" {
 module "k8s" {
   source             = "./module/k8s"
   vpc_id             = module.vpc.vpc_id
-  cluster_name       = "k8Mcl"
+  cluster_name       = local.name_k8s
   cluster_spec       = "ack.pro.small"
   service_cidr       = "192.168.0.0/16"
   cidr_for_pod       = ["172.160.10.0/24", "172.160.12.0/24"]
   vswitch_id         = module.vswitches.vswitch_id
   worker_vswitch_ids = module.vswitches.vswitch_id
-  k8s_tags = {
-
-    "Owner"       = "user",
-    "Environment" = "dev"
-  }
+  tags = var.tags
 
 }
 
@@ -105,38 +75,6 @@ module "workers" {
   source             = "./module/workers"
   cluster_id         = module.k8s.cluster_id
   worker_vswitch_ids = module.vswitches.vswitch_id
-  nodes_tags = {
+  tags = var.tags
 
-    "Owner"       = "user",
-    "Environment" = "dev"
-  }
-
->>>>>>> main
-}
-
-module "vswitches" {
-
-  source = "./module/vswitches"
-  vswitch_name = "myvswitch"
-  vpc_id = module.vpc.vpc_id
-  cidr_block = ["172.160.1.0/24", "172.160.2.0/24"]
-  zone_id = ["me-central-1a", "me-central-1b"]
-
-  vswitch_tags = {
-
-    "Owner" = "user",
-    "Environment" = "dev"
-  }
-
-}
-
-module "nat" {
-  source = "./module/nat"
-  vpc_id = module.vpc.vpc_id
-  vswitch_id = module.vswitches.vswitch_id
-  source_vswitch_id = module.vswitches.vswitch_id
-  depends_on       = [
-    module.vpc.vpc,
-    module.vswitches.vswitch_id,
-    ]
 }

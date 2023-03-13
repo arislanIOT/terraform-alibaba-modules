@@ -39,7 +39,7 @@ resource "alicloud_cs_managed_kubernetes" "k8s" {
     {
       "Name" = format("%s", var.cluster_name)
     },
-    var.k8s_tags,
+    var.tags,
   )
 
 

@@ -34,7 +34,7 @@ variable "worker_vswitch_ids" {
   default = []
 
 }
-variable "k8s_tags" {
+variable "tags" {
   description = "tag for grouping all"
   type = map(string)
   default = {}

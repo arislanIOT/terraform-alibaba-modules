@@ -31,7 +31,7 @@ variable "resource_group_id" {
   
 }
 
-variable "vpc_tags" {
+variable "tags" {
   description = "tag for grouping all"
   type = map(string)
   default = {}

@@ -29,20 +29,37 @@ variable "resource_group_id" {
   default     = ""
 
 }
+variable "env" {
+  description = "Enter the environment"
+  type = string
+  default = "dev"
+  
+}
+variable "project" {
+  description = "Specify the project name"
+  type = string
+  default = "Opexil"  
+}
 
-variable "vpc_tags" {
+variable "tags" {
   description = "tag for grouping all"
   type        = map(string)
-  default     = {}
+  default     = {
+    "Env"     = "dev"
+    "Project" = "Opexil"
+    "Arch"    = "K8s"
+  }
 }
 
 variable "zones" {
   description = "Specify the region where the cluster creates"
-<<<<<<< HEAD
-  type = list(string)
-  default = []
-=======
   type        = list(string)
   default     = []
->>>>>>> main
+}
+
+variable "general_name" {
+  description = "Please provide general name to provide at end of each resource"
+  type = string
+  default = "OSP-cluster"
+  
 }

@@ -16,7 +16,7 @@ resource "alicloud_vswitch" "vsw" {
         count.index + 1
       )
     },
-    var.vswitch_tags,
+    var.tags,
   )
 
 }

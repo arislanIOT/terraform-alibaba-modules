@@ -13,7 +13,7 @@ variable "worker_vswitch_ids" {
   type = any
   default = []
 }
-variable "nodes_tags" {
+variable "tags" {
   description = "tag for grouping all"
   type = map(string)
   default = {}

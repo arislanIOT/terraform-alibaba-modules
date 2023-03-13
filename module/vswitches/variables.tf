@@ -22,13 +22,9 @@ variable "zone_id" {
     default     = []
 }
 
-variable "vswitch_tags" {
+variable "tags" {
   description = "tag for grouping all"
   type = map(string)
   default = {}
-<<<<<<< HEAD
-}
-=======
 }
 
->>>>>>> main

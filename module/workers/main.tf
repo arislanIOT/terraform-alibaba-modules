@@ -25,7 +25,7 @@ resource "alicloud_cs_kubernetes_node_pool" "mynodes" {
     {
       "Name" = format("%s", var.node_pool_name)
     },
-    var.nodes_tags,
+    var.tags,
   )  
 }
 

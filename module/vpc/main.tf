@@ -15,7 +15,7 @@ resource "alicloud_vpc" "vpc" {
     {
       "Name" = format("%s", var.vpc_name)
     },
-    var.vpc_tags,
+    var.tags,
   )
   
 }
